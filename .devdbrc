@@ -1,0 +1,6 @@
+[
+  {
+    "type": "sqlite",
+    "path": "/Users/iskandarsadykov/laravel-projects/galaxy_client/database/database.sqlite"
+  }
+]
