@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 /**
@@ -15,7 +16,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->text('title')->index()->change();
+            $table->text('title')->change();
+            DB::statement('ALTER TABLE categories ADD INDEX categories_title_index (title(255))');
         });
     }
 
