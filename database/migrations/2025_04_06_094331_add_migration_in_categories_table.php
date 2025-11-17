@@ -15,7 +15,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('title', 255);
+            $table->text('title', 255)->index();
         });
     }
 
@@ -26,6 +26,7 @@ return new class extends Migration
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->dropColumn('title');
+            $table->dropIndex(['title']);
         });
     }
 };
