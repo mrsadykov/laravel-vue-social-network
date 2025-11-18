@@ -15,14 +15,28 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('some_int_field');
-            $table->dropColumn('some_int_field2');
-            $table->dropColumn('some_text_field');
-            $table->dropColumn('some_text_field2');
-            $table->dropIndex([ 'some_index' ]);
-            $table->dropColumn('some_index');
-            $table->dropIndex([ 'user_id' ]);
-            $table->dropColumn('user_id');
+            if (Schema::hasColumn('categories', 'some_int_field')) {
+                $table->dropColumn('some_int_field');
+            }
+
+            if (Schema::hasColumn('categories', 'some_int_field2')) {
+                $table->dropColumn('some_int_field2');
+            }
+
+            if (Schema::hasColumn('categories', 'some_text_field')) {
+                $table->dropColumn('some_text_field');
+            }
+
+            if (Schema::hasColumn('categories', 'some_text_field2')) {
+                $table->dropColumn('some_text_field2');
+            }
+
+            if (Schema::hasColumn('categories', 'user_id')) {
+                $table->dropIndex([ 'some_index' ]);
+                $table->dropColumn('some_index');
+                $table->dropIndex([ 'user_id' ]);
+                $table->dropColumn('user_id');
+            }
         });
     }
 
