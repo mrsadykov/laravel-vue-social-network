@@ -26,8 +26,13 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->bigInteger('some_int_field2')->nullable()->change();
-            $table->string('some_text_field2')->nullable()->change();
+            if (Schema::hasColumn('categories', 'some_int_field2')) {
+                $table->bigInteger('some_int_field2')->nullable()->change();
+            }
+
+            if (Schema::hasColumn('categories', 'some_text_field2')) {
+                $table->string('some_text_field2')->nullable()->change();
+            }
         });
     }
 };
