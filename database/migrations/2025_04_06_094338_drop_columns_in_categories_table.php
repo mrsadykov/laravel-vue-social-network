@@ -38,7 +38,11 @@ return new class extends Migration
             $table->string('some_text_field2')->nullable();
             $table->string('some_index')->nullable();
             $table->index('some_index');
-            $table->foreignId('user_id')->index()->nullable()->constrained('users');
+            //$table->foreignId('user_id')->index()->nullable()->constrained('users');
+
+            $table->dropForeign(['user_id']); // Удаляем внешний ключ
+            $table->dropIndex([ 'user_id' ]); // Теперь можно удалить индекс
+            $table->dropColumn('user_id');// И наконец колонку
         });
     }
 };
